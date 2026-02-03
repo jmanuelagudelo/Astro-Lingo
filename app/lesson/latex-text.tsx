@@ -18,26 +18,27 @@ export const LatexText = ({ content, className }: LatexTextProps) => {
     const renderLatex = (text: string) => {
       let result = text;
 
-      result = result.replace(/\$\$(.*?)\$\$/g, (match, formula) => {
+      // Procesar display math ($$...$$)
+      result = result.replace(/\$\$(.*?)\$\$/g, (_match: string, formula: string) => {
         try {
           return katex.renderToString(formula, {
             displayMode: true,
             throwOnError: false,
           });
         } catch (e) {
-          return match;
+          return _match;
         }
       });
 
-      // Luego procesar inline ($...$)
-      result = result.replace(/\$(.*?)\$/g, (match, formula) => {
+      // Procesar inline math ($...$)
+      result = result.replace(/\$(.*?)\$/g, (_match: string, formula: string) => {
         try {
           return katex.renderToString(formula, {
             displayMode: false,
             throwOnError: false,
           });
         } catch (e) {
-          return match;
+          return _match;
         }
       });
 

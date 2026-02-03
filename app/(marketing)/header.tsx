@@ -8,7 +8,6 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
-  useAuth,
 } from "@clerk/nextjs";
 import { Loader } from "lucide-react";
 import Image from "next/image";
@@ -19,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const Header = () => {
-  const { isSignedIn } = useAuth();
+  // const { isSignedIn } = useAuth();
   const [hideBanner, setHideBanner] = useState(true);
 
   return (

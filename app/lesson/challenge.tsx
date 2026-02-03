@@ -4,8 +4,8 @@ import { challengeOptions, challenges } from "@/db/schema";
 import { cn } from "@/lib/utils";
 
 import { Card } from "./card";
-import { ReadingChallenge } from "./reading-challenge";
 import { LatexText } from "./latex-text";
+import { ReadingChallenge } from "./reading-challenge";
 
 type ChallengeProps = {
   options: (typeof challengeOptions.$inferSelect)[];
