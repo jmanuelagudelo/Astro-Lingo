@@ -10,6 +10,7 @@ type CardProps = {
   onClick: (id: number) => void;
   disabled?: boolean;
   isActive?: boolean;
+  variant?: "default" | "relativity";
 };
 
 export const Card = ({

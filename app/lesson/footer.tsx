@@ -9,6 +9,7 @@ type FooterProps = {
   status: "correct" | "wrong" | "none" | "completed";
   disabled?: boolean;
   lessonId?: number;
+  isReadingChallenge?: boolean;
 };
 
 export const Footer = ({
@@ -16,6 +17,7 @@ export const Footer = ({
   status,
   disabled,
   lessonId,
+  isReadingChallenge,
 }: FooterProps) => {
   useKey("Enter", onCheck, {}, [onCheck]);
   const isMobile = useMedia("(max-width: 1024px)");
@@ -54,17 +56,18 @@ export const Footer = ({
         )}
 
         <Button
-          disabled={disabled}
-          aria-disabled={disabled}
+          disabled={isReadingChallenge ? false : disabled}
+          aria-disabled={isReadingChallenge ? false : disabled}
           className="ml-auto"
           onClick={onCheck}
           size={isMobile ? "sm" : "lg"}
           variant={status === "wrong" ? "danger" : "secondary"}
         >
-          {status === "none" && "Check"}
-          {status === "correct" && "Next"}
-          {status === "wrong" && "Retry"}
-          {status === "completed" && "Continue"}
+          {isReadingChallenge && "Continue"}
+          {!isReadingChallenge && status === "none" && "Check"}
+          {!isReadingChallenge && status === "correct" && "Next"}
+          {!isReadingChallenge && status === "wrong" && "Retry"}
+          {!isReadingChallenge && status === "completed" && "Continue"}
         </Button>
       </div>
     </footer>

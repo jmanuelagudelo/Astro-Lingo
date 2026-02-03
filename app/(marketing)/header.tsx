@@ -16,7 +16,6 @@ import Link from "next/link";
 
 import Banner from "@/components/banner";
 import { Button } from "@/components/ui/button";
-import { links } from "@/config";
 import { cn } from "@/lib/utils";
 
 export const Header = () => {
@@ -34,13 +33,14 @@ export const Header = () => {
         )}
       >
         <div className="mx-auto flex h-full items-center justify-between lg:max-w-screen-lg">
-          <Link href="/" className="flex items-center gap-x-3 pb-7 pl-4 pt-8">
-            <Image src="/mascot.svg" alt="Mascot" height={40} width={40} />
+            <Link href="/" className="flex items-center -gap-x-4">
+              <Image src="/LogoEintein.png" alt="Mascot" height={120} width={120} />
 
-            <h1 className="text-2xl font-extrabold tracking-wide text-green-600">
-              Lingo
-            </h1>
-          </Link>
+              <h1 className="m-0 text-2xl font-extrabold tracking-wide text-green-600">
+                Astro-Lingo
+              </h1>
+            </Link>
+
 
           <div className="flex gap-x-3">
             <ClerkLoading>
@@ -58,20 +58,6 @@ export const Header = () => {
                   </Button>
                 </SignInButton>
               </SignedOut>
-
-              <Link
-                href={links.sourceCode}
-                target="_blank"
-                rel="noreferrer noopener"
-                className={isSignedIn ? "pt-1.5" : "pt-3"}
-              >
-                <Image
-                  src="/github.svg"
-                  alt="Source Code"
-                  height={20}
-                  width={20}
-                />
-              </Link>
             </ClerkLoaded>
           </div>
         </div>

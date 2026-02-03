@@ -51,8 +51,6 @@ const LearnPage = async () => {
           points={userProgress.points}
           hasActiveSubscription={isPro}
         />
-
-        {!isPro && <Promo />}
         <Quests points={userProgress.points} />
       </StickyWrapper>
       <FeedWrapper>

@@ -95,6 +95,27 @@ export const Quiz = ({
   };
 
   const onContinue = () => {
+      if (challenge.type === "READ") {
+        startTransition(() => {
+          upsertChallengeProgress(challenge.id)
+            .then((response) => {
+              if (response?.error === "hearts") {
+                openHeartsModal();
+                return;
+              }
+
+              // Incrementar la barra de progreso
+              setPercentage((prev) => prev + 100 / challenges.length);
+              
+              // Avanzar al siguiente challenge
+              onNext();
+              setStatus("none");
+            })
+            .catch(() => toast.error("Something went wrong. Please try again."));
+        });
+        return;
+      }
+
     if (!selectedOption) return;
 
     if (status === "wrong") {
@@ -198,6 +219,7 @@ export const Quiz = ({
           lessonId={lessonId}
           status="completed"
           onCheck={() => router.push("/learn")}
+          isReadingChallenge={false}
         />
       </>
     );
@@ -237,17 +259,21 @@ export const Quiz = ({
                 selectedOption={selectedOption}
                 disabled={pending}
                 type={challenge.type}
+                question={challenge.question}
+                textContent={challenge.textContent}
+                challengeImageSrc={challenge.imageSrc} 
               />
             </div>
           </div>
         </div>
       </div>
 
-      <Footer
-        disabled={pending || !selectedOption}
-        status={status}
-        onCheck={onContinue}
-      />
+    <Footer
+      disabled={pending || (challenge.type !== "READ" && !selectedOption)}
+      status={challenge.type === "READ" ? "none" : status}
+      onCheck={onContinue}
+      isReadingChallenge={challenge.type === "READ"}
+    />
     </>
   );
 };

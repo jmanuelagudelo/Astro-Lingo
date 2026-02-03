@@ -9,6 +9,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/config";
 
 import "./globals.css";
+import "katex/dist/katex.min.css";
 
 const font = Nunito({ subsets: ["latin"] });
 
@@ -27,7 +28,7 @@ export default function RootLayout({
     <ClerkProvider
       appearance={{
         layout: {
-          logoImageUrl: "/favicon.ico",
+          logoImageUrl: "/LogoEintein.png",
         },
         variables: {
           colorPrimary: "#22C55E",

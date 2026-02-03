@@ -6,6 +6,8 @@ import { useAudio, useKey } from "react-use";
 import { challenges } from "@/db/schema";
 import { cn } from "@/lib/utils";
 
+import { LatexText } from "./latex-text";
+
 type CardProps = {
   id: number;
   text: string;
@@ -42,6 +44,9 @@ export const Card = ({
 
   useKey(shortcut, handleClick, {}, [handleClick]);
 
+  // Verificar si el texto contiene LaTeX ($...$ o $$...$$)
+  const hasLatex = /\$.*?\$/.test(text);
+
   return (
     <div
       onClick={handleClick}
@@ -72,16 +77,29 @@ export const Card = ({
         )}
       >
         {type === "ASSIST" && <div aria-hidden />}
-        <p
-          className={cn(
-            "text-sm text-neutral-600 lg:text-base",
-            selected && "text-sky-500",
-            selected && status === "correct" && "text-green-500",
-            selected && status === "wrong" && "text-rose-500"
-          )}
-        >
-          {text}
-        </p>
+
+        {hasLatex ? (
+          <LatexText
+            content={text}
+            className={cn(
+              "text-sm text-neutral-600 lg:text-base",
+              selected && "text-sky-500",
+              selected && status === "correct" && "text-green-500",
+              selected && status === "wrong" && "text-rose-500"
+            )}
+          />
+        ) : (
+          <p
+            className={cn(
+              "text-sm text-neutral-600 lg:text-base",
+              selected && "text-sky-500",
+              selected && status === "correct" && "text-green-500",
+              selected && status === "wrong" && "text-rose-500"
+            )}
+          >
+            {text}
+          </p>
+        )}
 
         <div
           className={cn(
