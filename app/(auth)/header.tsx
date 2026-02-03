@@ -12,7 +12,6 @@ import { Loader } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import Banner from "@/components/banner";
 import { Button } from "@/components/ui/button";
 import { links } from "@/config";
 import { cn } from "@/lib/utils";
@@ -23,7 +22,6 @@ export const Header = () => {
 
   return (
     <>
-      <Banner hide={hideBanner} setHide={setHideBanner} />
 
       <header
         className={cn(
