@@ -33,7 +33,7 @@ La aplicación está organizada en lecciones progresivas, centradas actualmente 
 
 No requiere instalación. Puedes acceder directamente desde el navegador en cualquier dispositivo:
 
-🔗 **[Acceder a AstroLingo](https://astro-lingo-2mvx.vercel.app)**
+🔗 **[Acceder a AstroLingo](https://astro-lingo.vercel.app)**
 
 ---
 
